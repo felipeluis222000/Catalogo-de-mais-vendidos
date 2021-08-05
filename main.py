@@ -9,6 +9,7 @@ import os
 
 NOME_PRODUTOS = []
 UNIDADES_VENDIDAS = []
+TOTAL_VENDAS = 0
 ANOTANDO = True
 
 def Linhas():
@@ -36,11 +37,17 @@ def ShellSort(produtos, quantidade_vendida):
     return (produtos, quantidade_vendida)
 
 def Ranking(produtos):
+    global TOTAL_VENDAS
+    global NOME_PRODUTOS
+    global UNIDADES_VENDIDAS
     topo = "***********RANKING**********"
+    total = "* TOTAL VENDIDO: {}".format(TOTAL_VENDAS)
+    total2 = " "*(len(topo)-len(total)-1) + "*"
     final = "*"*len(topo)
-    ranking = topo
+    ranking = "{}\n{}{}\n{}".format(topo, total, total2, final)
+
     for i in range(1,len(produtos)+1):
-        formatacao1 = "* {}º-{}".format(i,produtos[i-1])
+        formatacao1 = "* {}º-{}({}%)".format(i,produtos[i-1],(UNIDADES_VENDIDAS[i-1]/TOTAL_VENDAS)*100)
         formatacao2 = " "*(len(topo)-len(formatacao1)-1)+"*"
         ranking = "{}\n{}{}".format(ranking,formatacao1,formatacao2)
     ranking = "{}\n{}".format(ranking,final)
@@ -60,7 +67,7 @@ while ANOTANDO:
 
         except:
             print("utilizar somente valores inteiros!!!")
-
+    TOTAL_VENDAS = TOTAL_VENDAS + unidades_vendidas
     UNIDADES_VENDIDAS.append(unidades_vendidas)
     while True:
         Linhas()
