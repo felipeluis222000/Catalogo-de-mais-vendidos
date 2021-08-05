@@ -5,8 +5,9 @@
 #################################
 
 import time
+import os
 
-'''NOME_PRODUTOS = []
+NOME_PRODUTOS = []
 UNIDADES_VENDIDAS = []
 ANOTANDO = True
 
@@ -34,8 +35,16 @@ def ShellSort(produtos, quantidade_vendida):
 
     return (produtos, quantidade_vendida)
 
-def Ranking_Vendas():
-    pass
+def Ranking(produtos):
+    topo = "***********RANKING**********"
+    final = "*"*len(topo)
+    ranking = topo
+    for i in range(1,len(produtos)+1):
+        formatacao1 = "* {}º-{}".format(i,produtos[i-1])
+        formatacao2 = " "*(len(topo)-len(formatacao1)-1)+"*"
+        ranking = "{}\n{}{}".format(ranking,formatacao1,formatacao2)
+    ranking = "{}\n{}".format(ranking,final)
+    return (ranking)
 
 while ANOTANDO:
     Linhas()
@@ -69,7 +78,10 @@ while ANOTANDO:
         else:
             print("Utilizar apenas as respostas sugeridas!!!")
 
-NOME_PRODUTOS, UNIDADES_VENDIDAS = ShellSort(NOME_PRODUTOS, UNIDADES_VENDIDAS)'''
+NOME_PRODUTOS, UNIDADES_VENDIDAS = ShellSort(NOME_PRODUTOS, UNIDADES_VENDIDAS)
+ranking = Ranking(NOME_PRODUTOS)
 
-lista = ["A", "B", "C", "D"]
-# FAÇA A ANIMAÇÃO DO RANKING
+os.system('cls')
+for i in ranking:
+    print(i, end='', flush=True)
+    time.sleep(0.02)
