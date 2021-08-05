@@ -47,7 +47,9 @@ def Ranking(produtos):
     ranking = "{}\n{}{}\n{}".format(topo, total, total2, final)
 
     for i in range(1,len(produtos)+1):
-        formatacao1 = "* {}º-{}({}%)".format(i,produtos[i-1],(UNIDADES_VENDIDAS[i-1]/TOTAL_VENDAS)*100)
+        porcentagem = (UNIDADES_VENDIDAS[i-1]/TOTAL_VENDAS)*100
+        porcentagem = "%.2f"%(porcentagem)
+        formatacao1 = "* {}º-{}({}%)".format(i,produtos[i-1],porcentagem)
         formatacao2 = " "*(len(topo)-len(formatacao1)-1)+"*"
         ranking = "{}\n{}{}".format(ranking,formatacao1,formatacao2)
     ranking = "{}\n{}".format(ranking,final)
